@@ -29,9 +29,23 @@ fun has_passed a_grade =
 (* Using has_passed as a helper function, write a function number_passed that takes
 a list of type final_grade (or a more general type) and returns how many list elements
 have passing grades *)
+(* solution without tail recursion *)
+(*
 fun number_passed gs =
   case gs of
       [] => 0
     | g::gs' => if has_passed g
                 then 1 + number_passed gs'
                 else number_passed gs'
+*)
+(* reimplemented using tail-recursion *)
+fun number_passed gs =
+  let fun aux(gs, acc) =
+        case gs of
+            [] => acc
+          | g::gs' => if has_passed g
+                     then aux(gs', acc + 1)
+                     else aux(gs', acc)
+  in
+      aux (gs,0)
+  end
