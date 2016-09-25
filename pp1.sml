@@ -17,6 +17,11 @@ fun pass_or_fail a_grade =
  {grade : int option, id: a'} -> bool that returns true if and only if the grade
 field contains SOME i for and i >= 75 *)
 fun has_passed a_grade =
+  pass_or_fail a_grade = pass
+(* a more convoluted approach to has_passed *)
+(*
+fun has_passed a_grade =
   case pass_or_fail a_grade of
       pass => true
     | fail => false
+*)
