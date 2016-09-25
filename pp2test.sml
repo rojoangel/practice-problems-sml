@@ -17,3 +17,24 @@ val test_sum_tree_returns_value_for_a_single_node_tree =
 val test_sum_tree_returns_sum_of_values_for_a_two_node_tree =
     sum_tree (node {value = 25, left = leaf, right =
              (node {value = 50, left = leaf, right = leaf})}) = 75;
+
+(* gardener tests *)
+val test_gardener_returns_leaf_for_a_leaf =
+    gardener leaf = leaf;
+val test_gardener_respects_leave_me_alone_node =
+    gardener (node {value = leave_me_alone, left = leaf, right = leaf}) =
+    (node {value = leave_me_alone, left = leaf, right = leaf});
+val test_gardener_prunes_prune_me_node =
+    gardener (node {value = prune_me, left = leaf, right = leaf}) = leaf;
+val test_gardener_prunes_deep_prune_me_nodes =
+    gardener (node {value = leave_me_alone,
+                    left = (node {value = leave_me_alone,
+                                  left = (node { value = prune_me,
+                                                 left = leaf,
+                                                 right = leaf}),
+                                  right = leaf}),
+                    right = leaf}) = (node {value = leave_me_alone,
+                                            left = (node {value = leave_me_alone,
+                                                          left = leaf,
+                                                          right = leaf}),
+                                            right = leaf});

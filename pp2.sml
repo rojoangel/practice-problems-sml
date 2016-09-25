@@ -22,3 +22,14 @@ fun sum_tree t =
   case t of
       leaf => 0
     | node {value = i, right = tr, left = tl} => i + sum_tree tr + sum_tree tl 
+
+(* Write a function gardener of type flag tree -> flag tree such that its structure is
+ identical to the original tree except all nodes of the input containing prune_me are
+(along with all their descendants) replaced with a leaf. *)
+fun gardener t =
+  case t of
+      leaf => leaf
+    | node {value = prune_me, right = tr, left = tl} => leaf
+    | node {value = leave_me_alone, right = tr, left = tl} => node {value = leave_me_alone,
+                                                                    right = gardener tr,
+                                                                    left = gardener tl}
