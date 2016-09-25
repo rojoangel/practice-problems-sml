@@ -34,3 +34,17 @@ val test_number_passed_returns_count_of_passing_grades =
                    {grade = SOME 76, id = 14},
                    {grade = SOME 0, id = 15},
                    {grade = SOME 80, id = 16}] = 3;
+
+(* number_misgraded tests *)
+val test_number_misgraded_returns_zero_for_empty_list =
+    number_misgraded [] = 0;
+val test_number_misgraded_returns_zero_when_no_mislabeling =
+    number_misgraded [(pass, {grade = SOME 75, id = 10}),
+                      (fail, {grade = NONE, id = 11}),
+                      (fail, {grade = SOME 74, id = 12}),
+                      (pass, {grade = SOME 76, id = 13})] = 0;
+val test_number_misgraded_returns_count_of_mislabelings =
+    number_misgraded [(fail, {grade = SOME 75, id = 10}),
+                      (pass, {grade = NONE, id = 11}),
+                      (pass, {grade = SOME 74, id = 12}),
+                      (fail, {grade = SOME 76, id = 13})] = 4;

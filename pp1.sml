@@ -49,3 +49,12 @@ fun number_passed gs =
   in
       aux (gs,0)
   end
+
+(* write a function number_misgraded of type (pass_fail * final_grade) list -> int
+ that indicates how many list elements are 'mislabeled' where mislabeling means a
+ pair (pass, x) where has_passed x is false or (fail, x) where has_passed x is true *)
+fun number_misgraded xs =
+  case xs of
+      [] => 0
+    | (pass, g)::xs' => number_misgraded xs' + (if has_passed g then 0 else 1)
+    | (fail, g)::xs' => number_misgraded xs' + (if has_passed g then 1 else 0)
