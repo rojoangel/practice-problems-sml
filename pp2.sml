@@ -16,3 +16,9 @@ fun tree_height t =
           then left_height
           else right_height
       end
+
+(* Write a function that takes an and evaluates to the sum of all values in the nodes. *)
+fun sum_tree t =
+  case t of
+      leaf => 0
+    | node {value = i, right = tr, left = tl} => i + sum_tree tr + sum_tree tl 
