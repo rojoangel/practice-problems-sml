@@ -28,8 +28,7 @@ fun sum_tree t =
 (along with all their descendants) replaced with a leaf. *)
 fun gardener t =
   case t of
-      leaf => leaf
-    | node {value = prune_me, right = tr, left = tl} => leaf
-    | node {value = leave_me_alone, right = tr, left = tl} => node {value = leave_me_alone,
+      node {value = leave_me_alone, right = tr, left = tl} => node {value = leave_me_alone,
                                                                     right = gardener tr,
                                                                     left = gardener tl}
+    | _ => leaf
