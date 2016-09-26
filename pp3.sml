@@ -16,3 +16,10 @@ fun pred n =
   case n of
       ZERO => raise Negative
     | SUCC n' => n'
+
+(* Write nat_to_int: nat -> int, which given a "natural number" returns the
+ corresponding int. *)
+fun nat_to_int n =
+  case n of
+      ZERO => 0
+   | SUCC n' => 1 + nat_to_int n'
