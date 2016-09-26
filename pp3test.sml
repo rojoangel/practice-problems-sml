@@ -24,11 +24,21 @@ val test_nat_to_int_returns_5 =
     nat_to_int (SUCC(SUCC(SUCC(SUCC(SUCC(ZERO)))))) = 5;
 
 (* int_to_nat tests *)
-val int_to_nat_converts_0 =
+val test_int_to_nat_converts_0 =
     int_to_nat 0 = ZERO;
-val int_to_nat_converts_1 =
+val test_int_to_nat_converts_1 =
     int_to_nat 1 = SUCC(ZERO);
-val int_to_nat_converts_2 =
+val test_int_to_nat_converts_2 =
     int_to_nat 2 = SUCC(SUCC(ZERO));
-val int_to_nat_converts_5 =
+val test_int_to_nat_converts_5 =
     int_to_nat 5 = SUCC(SUCC(SUCC(SUCC(SUCC(ZERO)))));
+
+(* add tests *)
+val test_add_ZERO_to_ZERO_returns_ZERO =
+    add (ZERO, ZERO) = ZERO;
+val test_add_ZERO_to_something_returns_something =
+    add (ZERO, SUCC(ZERO)) = SUCC(ZERO);
+val test_add_something_to_ZERO_returns_something =
+    add (SUCC(SUCC(ZERO)), ZERO) = SUCC(SUCC(ZERO));
+val test_add_adds_non_ZEROS =
+    add (SUCC(SUCC(ZERO)), SUCC(SUCC(SUCC(SUCC(ZERO))))) = SUCC(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))));

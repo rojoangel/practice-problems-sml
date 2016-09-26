@@ -31,3 +31,10 @@ fun int_to_nat i =
   then raise Negative
   else if i = 0 then ZERO
   else SUCC (int_to_nat (i-1))
+
+(* Write add: nat * nat -> nat to perform addition *)
+fun add (n1,n2) =
+  case (n1,n2) of
+      (ZERO, n2) => n2
+    | (n1, ZERO) => n1
+    | (SUCC n1', SUCC n2') => SUCC(SUCC(add (n1', n2')))
