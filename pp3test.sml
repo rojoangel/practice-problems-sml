@@ -53,3 +53,11 @@ val test_sub_ZERO_from_anything_returns_anything =
     sub(SUCC(SUCC(ZERO)), ZERO) = SUCC(SUCC(ZERO));
 val test_sub_substracts_non_ZEROS =
     sub(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))), SUCC(SUCC(ZERO))) = SUCC(SUCC(SUCC(ZERO)));
+
+(* mult tests *)
+val test_mult_anything_by_ZERO_returns_ZERO =
+    mult (SUCC(ZERO), ZERO) = ZERO;
+val test_mult_ZERO_by_anything_returns_ZERO =
+    mult (ZERO, SUCC(ZERO)) = ZERO;
+val test_mult_multiplies_non_ZEROs =
+    mult (SUCC(SUCC(SUCC(ZERO))), SUCC(SUCC(ZERO))) = SUCC(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))));

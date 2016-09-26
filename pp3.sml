@@ -44,3 +44,10 @@ fun sub (n1,n2) =
   case (n1,n2) of
       (n1, ZERO) => n1
     | (n1, n2) => sub (pred n1, pred n2) 
+
+(* Write mult : nat * nat -> nat to perform multiplication (Hint: use add.) *)
+fun mult (n1,n2) =
+  case (n1,n2) of
+      (ZERO, _) => ZERO
+    | (_, ZERO) => ZERO
+    | (n1, n2) => add(n1, mult(n1, pred n2));
