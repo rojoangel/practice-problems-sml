@@ -38,3 +38,11 @@ fun add (n1,n2) =
       (ZERO, n2) => n2
     | (n1, ZERO) => n1
     | (SUCC n1', SUCC n2') => SUCC(SUCC(add (n1', n2')))
+
+(* Write sub : nat * nat -> nat to perform substraction. (Hint: Use pred.) *)
+fun sub (n1,n2) =
+  case (n1,n2) of
+      (ZERO, ZERO) => ZERO
+    | (ZERO, _) => raise Negative
+    | (n1', ZERO) => n1'
+    | (SUCC n1', SUCC n2') => sub (pred n1', pred n2') 

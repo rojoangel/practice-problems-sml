@@ -42,3 +42,14 @@ val test_add_something_to_ZERO_returns_something =
     add (SUCC(SUCC(ZERO)), ZERO) = SUCC(SUCC(ZERO));
 val test_add_adds_non_ZEROS =
     add (SUCC(SUCC(ZERO)), SUCC(SUCC(SUCC(SUCC(ZERO))))) = SUCC(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))));
+
+(* sub tests *)
+val test_sub_ZERO_from_ZERO_returns_ZERO =
+    sub (ZERO, ZERO) = ZERO;
+val test_sub_anything_from_ZERO_raises_Negative =
+    ((sub (ZERO, SUCC(ZERO)); false)
+         handle Negative => true)
+val test_sub_ZERO_from_anything_returns_anything =
+    sub(SUCC(SUCC(ZERO)), ZERO) = SUCC(SUCC(ZERO));
+val test_sub_substracts_non_ZEROS =
+    sub(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))), SUCC(SUCC(ZERO))) = SUCC(SUCC(SUCC(ZERO)));
