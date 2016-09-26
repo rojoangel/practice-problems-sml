@@ -23,3 +23,11 @@ fun nat_to_int n =
   case n of
       ZERO => 0
    | SUCC n' => 1 + nat_to_int n'
+
+(* Write int_to_nat : int -> nat which given an integer retturns a "natural number"
+ representation for it, or throws a Negative exception if the integer was negative *)
+fun int_to_nat i =
+  if i < 0
+  then raise Negative
+  else if i = 0 then ZERO
+  else SUCC (int_to_nat (i-1))

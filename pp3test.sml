@@ -22,3 +22,13 @@ val test_nat_to_int_returns_2 =
     nat_to_int (SUCC(SUCC(ZERO))) = 2;
 val test_nat_to_int_returns_5 =
     nat_to_int (SUCC(SUCC(SUCC(SUCC(SUCC(ZERO)))))) = 5;
+
+(* int_to_nat tests *)
+val int_to_nat_converts_0 =
+    int_to_nat 0 = ZERO;
+val int_to_nat_converts_1 =
+    int_to_nat 1 = SUCC(ZERO);
+val int_to_nat_converts_2 =
+    int_to_nat 2 = SUCC(SUCC(ZERO));
+val int_to_nat_converts_5 =
+    int_to_nat 5 = SUCC(SUCC(SUCC(SUCC(SUCC(ZERO)))));
