@@ -50,4 +50,12 @@ fun mult (n1,n2) =
   case (n1,n2) of
       (ZERO, _) => ZERO
     | (_, ZERO) => ZERO
-    | (n1, n2) => add(n1, mult(n1, pred n2));
+    | (n1, n2) => add(n1, mult(n1, pred n2))
+
+(* Write less_than : nat * nat -> bool to return true when the firt argument is less
+than the second *)
+fun less_than (n1,n2) =
+  case (n1,n2) of
+      (_, ZERO) => false
+    | (ZERO, _) => true
+    | (n1, n2) => less_than (pred n1, pred n2)

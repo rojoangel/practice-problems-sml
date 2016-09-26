@@ -61,3 +61,18 @@ val test_mult_ZERO_by_anything_returns_ZERO =
     mult (ZERO, SUCC(ZERO)) = ZERO;
 val test_mult_multiplies_non_ZEROs =
     mult (SUCC(SUCC(SUCC(ZERO))), SUCC(SUCC(ZERO))) = SUCC(SUCC(SUCC(SUCC(SUCC(SUCC(ZERO))))));
+
+(* less_than tests *)
+val test_ZERO_is_not_less_than_ZERO =
+    less_than (ZERO, ZERO) = false;
+val test_nothing_is_less_than_ZERO =
+    less_than (SUCC(ZERO), ZERO) = false;
+val test_ZERO_is_less_than_anything =
+    less_than (ZERO, SUCC(ZERO)) = true;
+val test_less_than_zero_compares_non_ZEROs_1 =
+    less_than (SUCC(SUCC(ZERO)), SUCC(ZERO)) = false;
+val test_less_than_zero_compares_non_ZEROs_2 =
+    less_than (SUCC(ZERO), SUCC(SUCC(ZERO))) = true;
+val test_less_than_zero_compares_non_ZEROs_3 =
+    less_than (SUCC(SUCC(ZERO)), SUCC(SUCC(ZERO))) = false;
+
