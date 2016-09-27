@@ -30,3 +30,13 @@ val test_add_opt_returns_NONE_if_second_arg_is_NONE =
     add_opt(SOME 7, NONE) = NONE;
 val test_add_opt_returns_sum_if_no_arg_is_NONE =
     add_opt(SOME 7, SOME 10) = SOME 17;
+
+(* add_all_opt tests *)
+val test_add_all_opt_returns_NONE_for_empty_list =
+    add_all_opt([]) = NONE;
+val test_add_all_opt_returns_NONE_for_NONE_list =
+    add_all_opt([NONE]) = NONE;
+val test_add_all_opt_returns_NONE_for_multi_NONE_list =
+    add_all_opt([NONE, NONE, NONE]) = NONE;
+val test_add_all_opt_returns_sum_for_not_all_NONE_list =
+    add_all_opt([NONE, SOME 1, SOME 2, NONE, SOME 99]) = SOME 102;

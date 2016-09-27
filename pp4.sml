@@ -35,3 +35,17 @@ fun add_opt (o1, o2) =
   case (o1, o2) of 
       (SOME i1, SOME i2) => SOME(i1 + i2)
     | (_, _)  => NONE
+
+(* Write a function 𝚊𝚍𝚍_𝚊𝚕𝚕_𝚘𝚙𝚝 that given a list of "optional" integers, adds those
+integers that are there (i.e. adds all the 𝚂𝙾𝙼𝙴 𝚒). If the list does not contain any
+𝚂𝙾𝙼𝙴 in it, i.e. they are all 𝙽𝙾𝙽𝙴 or the list is empty, the function should evaluate to NONE. *)
+fun add_all_opt xs =
+  let fun f param =
+      case param of
+          ([], acc) => acc
+        | (SOME x :: xs, SOME y) => f(xs, SOME (x+y))
+        | (NONE :: xs, SOME y) => f(xs, SOME y)
+        | (x::xs, _) =>  f(xs, x)
+  in
+      f(xs, NONE)
+  end
