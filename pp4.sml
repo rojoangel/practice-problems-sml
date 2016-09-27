@@ -28,3 +28,10 @@ fun any_divisible_by (xs, i) =
   case xs of
       [] => false
     | x::xs' => is_divisible_by (x, i) orelse any_divisible_by (xs', i)
+
+(* Write a function 𝚊𝚍𝚍_𝚘𝚙𝚝 that given two "optional" integers, adds themif they are
+both present, or evaluates to 𝙽𝙾𝙽𝙴 if at least one of the two arguments is 𝙽𝙾𝙽𝙴. *)
+fun add_opt (o1, o2) =
+  case (o1, o2) of 
+      (SOME i1, SOME i2) => SOME(i1 + i2)
+    | (_, _)  => NONE

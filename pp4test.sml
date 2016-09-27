@@ -21,4 +21,12 @@ val test_any_divisible_by_returns_true_for_a_single__divisible_number =
 val test_any_divisible_by_returns_true =
     any_divisible_by ([1,3,5,7,9,11,10], 2) = true;
 val test_any_divisible_by_returns_false =
-    any_divisible_by ([1,3,5,7,9,11,10], 23) = true;
+    any_divisible_by ([1,3,5,7,9,11,10], 23) = false;
+
+(* add_opt tests *)
+val test_add_opt_returns_NONE_if_first_arg_is_NONE =
+    add_opt(NONE, SOME 10) = NONE;
+val test_add_opt_returns_NONE_if_second_arg_is_NONE =
+    add_opt(SOME 7, NONE) = NONE;
+val test_add_opt_returns_sum_if_no_arg_is_NONE =
+    add_opt(SOME 7, SOME 10) = SOME 17;
