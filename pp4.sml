@@ -13,6 +13,6 @@ of list functions. You may assume that the list is non-empty and all the numbers
 on the list are positive*)
 fun gcd_list xs =
   case xs of
-      [] => 1
-    | x::[] => x
+      x::[] => x
     | x::xs' => gcd(x, gcd_list xs')
+    | _ => raise Empty
