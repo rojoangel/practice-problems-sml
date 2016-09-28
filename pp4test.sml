@@ -63,3 +63,22 @@ val test_min_max_returns_min_max_for_two_value_list =
     min_max [99, 1] = (1, 99);
 val test_min_max_returs_min_max_for_long_list =
     min_max [10, 56, 99, 78, 25, 19, 9, 76, 56, 23, 9, 77] = (9, 99); 
+
+val test_unzip_unzips_empty_list =
+    unzip [] = ([], []);
+val test_unzip_unzips_single_element_list =
+    unzip [(1, 2)] = ([1], [2]);
+val test_unzip_unzips_two_element_list =
+    unzip [(1, 2), (3, 4)] = ([1, 3], [2, 4]);
+val test_unzip_unzips_long_list =
+    unzip [(1, 2), (3, 4), (5, 6), (7, 8)] = ([1, 3, 5, 7], [2, 4, 6, 8]);
+
+(* repeats_list tests *)
+val test_repeats_list_raises_exception_for_length_mismatch =
+    ((repeats_list (["a"], []); false)
+     handle e => true);
+val test_repeats_list_returns_empty_list_for_empty_lists =
+    repeats_list ([], []) = [];
+val test_repeats_list_repeats_according_to_second_parameter =
+    repeats_list (["a", "b", "c", "d", "e", "f", "g"], [1 ,2, 3, 4, 3, 2, 1]) =
+    ["a", "b", "b", "c", "c", "c", "d", "d", "d", "d", "e", "e", "e", "f", "f", "g"];

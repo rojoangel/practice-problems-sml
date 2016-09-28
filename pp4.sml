@@ -95,3 +95,19 @@ fun min_max xs =
         | x::xs => accumulate_min_max ((x,x), xs)
   end
 *)
+
+(* Write a function 𝚞𝚗𝚣𝚒𝚙 that takes an (𝚒𝚗𝚝 * 𝚒𝚗𝚝) 𝚕𝚒𝚜𝚝 and evaluates to 𝚒𝚗𝚝 𝚕𝚒𝚜𝚝 * 𝚒𝚗𝚝 𝚕𝚒𝚜𝚝 such that the first element of the resulting tuple is a list consisting of all first elements of the argument (in order), and the second element of the result consists of all second elements of the tuples in the original list. *)
+fun unzip xs =
+  case xs of
+      [] => ([], [])
+    | (i1, i2)::xs' => case unzip xs' of
+                           (i1s, i2s) => (i1::i1s, i2::i2s)
+
+(* Write a function 𝚛𝚎𝚙𝚎𝚊𝚝𝚜_𝚕𝚒𝚜𝚝 that given a list of strings and a list of nonnegative integers, repeats the strings in the first list according to the numbers indicated by the second list. You may assume that both lists have the same length.*)
+exception ListLengthMismatch
+fun repeats_list param =
+  case param of
+      ([], []) => []
+    | (_::ss, 0::is) => repeats_list (ss, is)
+    | (s::ss, i::is) => s :: repeats_list (s::ss, i-1::is)
+    | _  => raise ListLengthMismatch 
