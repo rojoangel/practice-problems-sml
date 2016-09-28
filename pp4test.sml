@@ -52,3 +52,14 @@ val test_alternate_alternates_for_three_elements_list =
     alternate [1, 2, 3] = 2;
 val test_alternate_alternates_for_long_list =
     alternate [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = ~5;
+
+(* min_max tests *)
+val test_min_max_raises_empty_for_empty_list =
+    ((min_max []; false)
+     handle e => true);
+val test_min_max_returns_value_for_single_value_list =
+    min_max [4] = (4, 4);
+val test_min_max_returns_min_max_for_two_value_list =
+    min_max [99, 1] = (1, 99);
+val test_min_max_returs_min_max_for_long_list =
+    min_max [10, 56, 99, 78, 25, 19, 9, 76, 56, 23, 9, 77] = (9, 99); 

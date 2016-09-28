@@ -69,3 +69,29 @@ fun alternate xs =
       helper (1, xs)
   end
 *)
+
+(* Write a function 𝚖𝚒𝚗_𝚖𝚊𝚡 that takes a non-empty list of numbers, and evaluates to a tuple (𝚖𝚒𝚗, 𝚖𝚊𝚡) of the minimum and maximum of the numbers in the list. *)
+fun min_max xs =
+  case xs of
+      [] => raise Empty
+    | x::[] => (x, x)
+    | x::xs' => case min_max xs' of
+                      (tail_min, tail_max) => (if x < tail_min then x else tail_min,
+                                               if x > tail_max then x else tail_max)
+
+(* alternative solution using helper function and tail recursion *)
+(*
+fun min_max xs =
+  let fun accumulate_min_max ((min, max), xs) =
+        case xs of
+            [] => (min, max)
+          | x'::xs' => accumulate_min_max (
+                         (if x' < min then x' else min,
+                          if x' > max then x' else max),
+                         xs')
+  in
+      case xs of
+          [] => raise Empty
+        | x::xs => accumulate_min_max ((x,x), xs)
+  end
+*)

@@ -75,4 +75,3 @@ val test_less_than_zero_compares_non_ZEROs_2 =
     less_than (SUCC(ZERO), SUCC(SUCC(ZERO))) = true;
 val test_less_than_zero_compares_non_ZEROs_3 =
     less_than (SUCC(SUCC(ZERO)), SUCC(SUCC(ZERO))) = false;
-
