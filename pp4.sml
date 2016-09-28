@@ -49,3 +49,23 @@ fun add_all_opt xs =
   in
       f(xs, NONE)
   end
+
+(* Write a function 𝚊𝚕𝚝𝚎𝚛𝚗𝚊𝚝𝚎 that takes a list of numbers and adds them with alternating sign. The result of applying this function to [𝟷, 𝟸, 𝟹, 𝟺] should be 𝟷 - 𝟸 + 𝟹 - 𝟺 = ~𝟸. *)
+fun alternate xs =
+  case xs of
+      [] => 0
+    | x::[] => x
+    | x::x'::xs' => x - x' + alternate xs'
+
+(* alternative solution *)
+(*
+fun alternate xs =
+  let
+      fun helper (factor, xs) =
+        case xs of
+            [] => 0
+          | x::xs' => x * factor + helper (~1 * factor, xs')
+  in
+      helper (1, xs)
+  end
+*)

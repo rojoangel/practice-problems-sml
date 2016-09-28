@@ -40,3 +40,15 @@ val test_add_all_opt_returns_NONE_for_multi_NONE_list =
     add_all_opt([NONE, NONE, NONE]) = NONE;
 val test_add_all_opt_returns_sum_for_not_all_NONE_list =
     add_all_opt([NONE, SOME 1, SOME 2, NONE, SOME 99]) = SOME 102;
+
+(* alternate tests *)
+val test_alternate_returns_0_for_empty_list =
+    alternate [] = 0;
+val test_alternate_returns_value_for_single_value_list =
+    alternate [1] = 1;
+val test_alternate_returns_sum_for_two_elements_list =
+    alternate [1, 2] = ~1;
+val test_alternate_alternates_for_three_elements_list =
+    alternate [1, 2, 3] = 2;
+val test_alternate_alternates_for_long_list =
+    alternate [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = ~5;
