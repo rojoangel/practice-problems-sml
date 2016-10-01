@@ -20,3 +20,10 @@ val test_factorial_1 = factorial 1 = 1;
 val test_factorial_2 = factorial 2 = 2;
 val test_factorial_9 = factorial 9 = 362880;
 
+(* unfold_map *)
+val test_unfold_map_using_addition =
+    unfold_map (fn x => x + 1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6];
+val test_unfold_map_passing_empty_list =
+    unfold_map (fn x => x + 1) [] = [];
+val test_unfold_map_using_string_concatenation =
+    unfold_map (fn x => x ^ "!") ["Hey", "Ho", "Let's go"] = ["Hey!", "Ho!", "Let's go!"]
