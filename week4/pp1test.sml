@@ -14,7 +14,7 @@ val test_unfold_returns_empty_list_when_f_returns_NONE_for_initial_state =
 val test_unfold_works_with_strings_too =
     unfold (fn s => if String.size s < 9 then SOME (s ^ "Hoho", s) else NONE) "" = ["", "Hoho", "HohoHoho"];
 
-(* factorial tests*)
+(* factorial tests *)
 val test_factorial_0 = factorial 0 = 1;
 val test_factorial_1 = factorial 1 = 1;
 val test_factorial_2 = factorial 2 = 2;
@@ -30,5 +30,11 @@ val test_unfold_map_using_string_concatenation =
 
 (* do_until tests *)
 val test_do_until_1 = do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 48 = 3;
-val test_do_until_with_predicate_false_for_the_firts_iteration =
+val test_do_until_with_predicate_false_for_the_fisrt_iteration =
     do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 49 = 49;
+
+(* imp_factorial tests *)
+val test_imp_factorial_0 = imp_factorial 0 = 1;
+val test_imp_factorial_1 = imp_factorial 1 = 1;
+val test_imp_factorial_2 = imp_factorial 2 = 2;
+val test_imp_factorial_9 = imp_factorial 9 = 362880;

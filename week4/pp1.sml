@@ -34,3 +34,6 @@ fun do_until f p x =
   if p x
   then x
   else do_until f p (f x) 
+
+(* Write a function 𝚒𝚖𝚙_𝚏𝚊𝚌𝚝𝚘𝚛𝚒𝚊𝚕 that has the same behavior as the 𝚏𝚊𝚌𝚝𝚘𝚛𝚒𝚊𝚕 function described above, but is defined in terms of 𝚍𝚘_𝚞𝚗𝚝𝚒𝚕. *)
+fun imp_factorial n = #1 (do_until (fn (acc, x) => (acc * x, x - 1)) (fn (_, x) => x = 0) (1, n))
