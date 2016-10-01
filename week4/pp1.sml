@@ -28,3 +28,9 @@ fun unfold_map f =
   in
       unfold helper
   end
+
+(* Write a function 𝚍𝚘_𝚞𝚗𝚝𝚒𝚕 that takes three arguments, 𝚏, 𝚙 and 𝚡, and keeps applying 𝚏 to 𝚡 until 𝚙 𝚡 evaluates to 𝚝𝚛𝚞𝚎. Upon reaching that condition, 𝚏 (𝚏 (𝚏 ... (𝚏 𝚡) ...)) is returned. *)
+fun do_until f p x =
+  if p x
+  then x
+  else do_until f p (f x) 
