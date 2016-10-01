@@ -13,3 +13,6 @@ fun unfold f state =
   case f state of
       NONE => []
     | SOME (state', x) => x :: unfold f state' 
+
+(* Write a function 𝚏𝚊𝚌𝚝𝚘𝚛𝚒𝚊𝚕 that takes an integer number n and evaluates to n!. Your function should be a composition of 𝚞𝚗𝚏𝚘𝚕𝚍 and 𝙻𝚒𝚜𝚝.𝚏𝚘𝚕𝚍𝚕. You should not use any other list functions, recursion or pattern matching. *)
+val factorial = (List.foldl (fn (x, acc) => x * acc) 1) o (unfold (fn x => if x > 0 then SOME (x-1 , x) else NONE))

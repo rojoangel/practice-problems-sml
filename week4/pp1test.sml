@@ -13,3 +13,10 @@ val test_unfold_returns_empty_list_when_f_returns_NONE_for_initial_state =
     unfold (fn x => if x > 3 then NONE else SOME (x + 1, x)) 4 = [];
 val test_unfold_works_with_strings_too =
     unfold (fn s => if String.size s < 9 then SOME (s ^ "Hoho", s) else NONE) "" = ["", "Hoho", "HohoHoho"];
+
+(* factorial tests*)
+val test_factorial_0 = factorial 0 = 1;
+val test_factorial_1 = factorial 1 = 1;
+val test_factorial_2 = factorial 2 = 2;
+val test_factorial_9 = factorial 9 = 362880;
+
