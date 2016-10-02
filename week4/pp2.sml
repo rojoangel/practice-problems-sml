@@ -41,3 +41,8 @@ val add_all_opt =
     in
         List.foldl add_opt NONE
     end
+
+(* Write a function 𝚊𝚕𝚝𝚎𝚛𝚗𝚊𝚝𝚎 following the specification from week 2's
+ "Flip Flop" problem. Use folds. *)
+val alternate =
+      #2 o List.foldl (fn (x, (factor, acc)) => (~1 * factor, x * factor + acc)) (1,0)
