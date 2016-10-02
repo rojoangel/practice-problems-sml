@@ -91,3 +91,6 @@ fun repeats_list xs =
   in
       unfold aux xs
   end
+
+(* Write a function 𝚕𝚎𝚗𝚐𝚝𝚑_𝚘𝚏_𝚊_𝚕𝚒𝚜𝚝 following the specification from week 3's "38 Cons Cells" problem. Use folds. *)
+fun length_of_a_list xs = List.foldl (fn (_, acc) => acc + 1) 0 xs

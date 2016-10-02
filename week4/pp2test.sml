@@ -83,3 +83,9 @@ val test_repeats_list_repeats_according_to_second_parameter =
     repeats_list (["a", "b", "c", "d", "e", "f", "g"], [1 ,2, 3, 4, 3, 2, 1]) =
     ["a", "b", "b", "c", "c", "c", "d", "d", "d", "d", "e", "e", "e", "f", "f", "g"];
 
+(* length_of_a_list tests *)
+val test_length_of_a_list_1 = length_of_a_list [1] = 1;
+val test_length_of_a_list_2 = length_of_a_list [] = 0;
+val test_length_of_a_list_3 = length_of_a_list [[], [], [1, 2]] = 3;
+val test_length_of_a_list_4 = length_of_a_list [(1, "hi"), (2, "there")] = 2;
+val test_length_of_a_list_5 = length_of_a_list ["a", "quick", "brown", "fox"] = 4;
