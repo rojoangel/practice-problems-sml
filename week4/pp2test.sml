@@ -55,3 +55,13 @@ val test_min_max_returns_min_max_for_two_value_list =
     min_max [99, 1] = (1, 99);
 val test_min_max_returs_min_max_for_long_list =
     min_max [10, 56, 99, 78, 25, 19, 9, 76, 56, 23, 9, 77] = (9, 99);
+
+(* unzip tests *)
+val test_unzip_unzips_empty_list =
+    unzip [] = ([], []);
+val test_unzip_unzips_single_element_list =
+    unzip [(1, 2)] = ([1], [2]);
+val test_unzip_unzips_two_element_list =
+    unzip [(1, 2), (3, 4)] = ([1, 3], [2, 4]);
+val test_unzip_unzips_long_list =
+    unzip [(1, 2), (3, 4), (5, 6), (7, 8)] = ([1, 3, 5, 7], [2, 4, 6, 8]);
