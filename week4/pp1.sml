@@ -62,3 +62,99 @@ fun my_sqrt n =
   in
       fixed_point (fn x => 0.5 * (x + n / x)) n
   end
+
+(* Let's reuse the binary tree data structure from practice problems for Section 2:
+
+ 𝚍𝚊𝚝𝚊𝚝𝚢𝚙𝚎 '𝚊 𝚝𝚛𝚎𝚎 = 𝚕𝚎𝚊𝚏 | 𝚗𝚘𝚍𝚎 𝚘𝚏 { 𝚟𝚊𝚕𝚞𝚎 : '𝚊, 𝚕𝚎𝚏𝚝 : '𝚊 𝚝𝚛𝚎𝚎, 𝚛𝚒𝚐𝚑𝚝 : '𝚊 𝚝𝚛𝚎𝚎 }
+
+ Write functions 𝚝𝚛𝚎𝚎_𝚏𝚘𝚕𝚍 and 𝚝𝚛𝚎𝚎_𝚞𝚗𝚏𝚘𝚕𝚍 that would serve as equivalents of
+ 𝚏𝚘𝚕𝚍 and 𝚞𝚗𝚏𝚘𝚕𝚍 on lists for this data structure.
+
+HINT: This is a hard problem, but consider this: the initial value for 𝚏𝚘𝚕𝚍 corresponds
+ to the base case of recursion on lists (i.e., matching []), while the function passed
+ to the 𝚏𝚘𝚕𝚍 corresponds to the case when we match on ::. [] and :: correspond to 𝚕𝚎𝚊𝚏
+ and 𝚗𝚘𝚍𝚎 data constructors. Similar reasoning applies to 𝚞𝚗𝚏𝚘𝚕𝚍. You might also want to
+ meditate over the signatures below if this does not provide sufficient insight. *)
+datatype 'a tree = leaf
+                 | node of { value : 'a, left: 'a tree, right: 'a tree }
+
+fun tree_fold f base t =
+  case t of
+      leaf => base
+    | node {value = v, left = l, right = r} => f (tree_fold f base l, v, tree_fold f base r)
+
+fun tree_unfold f base =
+  case f base of
+      NONE => leaf
+    | SOME (lstate, value, rstate) => node ({left = tree_unfold f lstate,
+                                            value = value,
+                                            right = tree_unfold f rstate})
+
+(* Let's try to write a simple type inference algorithm for a very simple expression language.
+ We won't deal with functions, variables or polymorphism.
+
+ The expressions will be represented by the following data type:
+
+ 𝚍𝚊𝚝𝚊𝚝𝚢𝚙𝚎 𝚎𝚡𝚙𝚛 = 𝚕𝚒𝚝𝚎𝚛𝚊𝚕_𝚋𝚘𝚘𝚕
+             | 𝚕𝚒𝚝𝚎𝚛𝚊𝚕_𝚒𝚗𝚝
+             | 𝚋𝚒𝚗𝚊𝚛𝚢_𝚋𝚘𝚘𝚕_𝚘𝚙 𝚘𝚏 𝚎𝚡𝚙𝚛 * 𝚎𝚡𝚙𝚛
+             | 𝚋𝚒𝚗𝚊𝚛𝚢_𝚒𝚗𝚝_𝚘𝚙 𝚘𝚏 𝚎𝚡𝚙𝚛 * 𝚎𝚡𝚙𝚛
+             | 𝚌𝚘𝚖𝚙𝚊𝚛𝚒𝚜𝚘𝚗 𝚘𝚏 𝚎𝚡𝚙𝚛 * 𝚎𝚡𝚙𝚛
+             | 𝚌𝚘𝚗𝚍𝚒𝚝𝚒𝚘𝚗𝚊𝚕 𝚘𝚏 𝚎𝚡𝚙𝚛 * 𝚎𝚡𝚙𝚛 * 𝚎𝚡𝚙𝚛
+
+ The data constructors represent literal booleans, literal integers, binary operators on booleans,
+ binary operators on integers, comparison operators and conditionals. Since we're only interested
+ in types, and not in actually evaluating our expressions, we're omitting immaterial details, such
+ as whether a literal boolean is "true" or "false", or whether an operator on integers is addition,
+ subtraction or something else entirely.
+
+ The types will be represented by the following simple datatype:
+
+ 𝚍𝚊𝚝𝚊𝚝𝚢𝚙𝚎 𝚎𝚡𝚙𝚛_𝚝𝚢𝚙𝚎 = 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕 | 𝚝𝚢𝚙𝚎_𝚒𝚗𝚝
+
+ The typing rules for our expression language are simple:
+
+ Literal booleans are of type 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕.
+ Literal integers have type 𝚝𝚢𝚙𝚎_𝚒𝚗𝚝.
+ Boolean operators have type 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕 provided that both of their operands also have type 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕.
+ Integer operators have type 𝚝𝚢𝚙𝚎_𝚒𝚗𝚝 provided that both operands also have type 𝚝𝚢𝚙𝚎_𝚒𝚗𝚝.
+ Comparison operators have type 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕 provided that both operands have type 𝚝𝚢𝚙𝚎_𝚒𝚗𝚝.
+ Conditionals have the same type as the first branch, provided that the second branch has the same type,
+ and the condition has type 𝚝𝚢𝚙𝚎_𝚋𝚘𝚘𝚕.
+ Write a function 𝚒𝚗𝚏𝚎𝚛_𝚝𝚢𝚙𝚎 that accepts an 𝚎𝚡𝚙𝚛 and evaluates to the type of the given expression.
+ If the type cannot be determined according to the rules above, raise 𝚃𝚢𝚙𝚎𝙴𝚛𝚛𝚘𝚛 exception. *)
+datatype expr = literal_bool | literal_int
+                | binary_bool_op of expr * expr | binary_int_op of expr * expr
+                | comparison of expr * expr
+                | conditional of expr * expr * expr
+
+datatype expr_type = type_bool | type_int
+
+exception TypeError
+
+fun infer_type expression =
+  case expression of
+      literal_bool => type_bool
+    | literal_int => type_int
+    | binary_bool_op (x1, x2) => if infer_type x1 = type_bool
+                                    andalso
+                                    infer_type x2 = type_bool
+                                 then type_bool
+                                 else raise TypeError
+    | binary_int_op (x1, x2) => if infer_type x1 = type_int
+                                   andalso
+                                   infer_type x2 = type_int
+                                then type_int
+                                else raise TypeError
+    | comparison (x1, x2) => if infer_type x1 = type_int
+                                andalso
+                                infer_type x2 = type_int
+                             then type_bool
+                             else raise TypeError
+    | conditional (x1, x2, x3) => let val t2 = infer_type x2
+                                      val t3 = infer_type x3
+                                  in
+                                      if infer_type x1 = type_bool andalso t2 = t3
+                                      then t2
+                                      else raise TypeError
+                                  end
