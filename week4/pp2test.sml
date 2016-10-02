@@ -65,3 +65,11 @@ val test_unzip_unzips_two_element_list =
     unzip [(1, 2), (3, 4)] = ([1, 3], [2, 4]);
 val test_unzip_unzips_long_list =
     unzip [(1, 2), (3, 4), (5, 6), (7, 8)] = ([1, 3, 5, 7], [2, 4, 6, 8]);
+
+(* zip tests *)
+val test_zip_1 = zip ([1, 2, 3], [4, 6]) = [(1, 4), (2, 6)];
+val test_zip_2 = zip ([], [4, 6]) = [];
+val test_zip_3 = zip ([1, 2, 3], []) = [];
+val test_zip_4 = zip ([], []) = [];
+val test_zip_5 = zip ([1, 2], [4, 6, 8]) = [(1, 4), (2, 6)];
+val test_zip_6 = zip ([1, 2, 3], [4, 6, 8]) = [(1, 4), (2, 6), (3, 8)];

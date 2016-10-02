@@ -57,3 +57,20 @@ fun min_max (x::xs) =
 (* Write a function 𝚞𝚗𝚣𝚒𝚙 following the specification from week 2's
  "Lists And Tuples, Oh My!" problem. Use folds. *)
 fun unzip xs = List.foldr (fn ((x,y), (acc_x, acc_y)) => (x::acc_x, y::acc_y)) ([], []) xs
+
+(* Write a function 𝚣𝚒𝚙 following the specification from week 2's
+ "Lists And Tuples, Oh My! -- Continued (1)" problem.
+ Use 𝚞𝚗𝚏𝚘𝚕𝚍 that you wrote in "The Evil Twin" problem. *)
+fun zip xs =
+  let
+      fun unfold f state =
+        case f state of
+            NONE => []
+          | SOME (state', x) => x :: unfold f state'
+      fun aux param =
+        case param of
+            (x::xs, y::ys) => SOME ((xs, ys), (x, y))
+          | _ => NONE
+  in
+      unfold aux xs
+  end
