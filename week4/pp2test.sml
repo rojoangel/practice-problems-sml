@@ -22,3 +22,13 @@ val test_any_divisible_by_returns_true =
     any_divisible_by ([1,3,5,7,9,11,10], 2) = true;
 val test_any_divisible_by_returns_false =
     any_divisible_by ([1,3,5,7,9,11,10], 23) = false;
+
+(* add_all_opt tests *)
+val test_add_all_opt_returns_NONE_for_empty_list =
+    add_all_opt([]) = NONE;
+val test_add_all_opt_returns_NONE_for_NONE_list =
+    add_all_opt([NONE]) = NONE;
+val test_add_all_opt_returns_NONE_for_multi_NONE_list =
+    add_all_opt([NONE, NONE, NONE]) = NONE;
+val test_add_all_opt_returns_sum_for_not_all_NONE_list =
+    add_all_opt([NONE, SOME 1, SOME 2, NONE, SOME 99]) = SOME 102;
