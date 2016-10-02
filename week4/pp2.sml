@@ -46,3 +46,9 @@ val add_all_opt =
  "Flip Flop" problem. Use folds. *)
 val alternate =
       #2 o List.foldl (fn (x, (factor, acc)) => (~1 * factor, x * factor + acc)) (1,0)
+
+(* Write a function 𝚖𝚒𝚗_𝚖𝚊𝚡 following the specification from week 2's "Minimum/Maximum" problem. Use folds. *)
+fun min_max (x::xs) =
+    List.foldl (fn (x, (acc_min, acc_max)) => (
+                    if x < acc_min then x else acc_min,
+                    if x > acc_max then x else acc_max)) (x,x) xs
