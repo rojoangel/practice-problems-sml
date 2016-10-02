@@ -74,3 +74,20 @@ fun zip xs =
   in
       unfold aux xs
   end
+
+(* Write a function 𝚛𝚎𝚙𝚎𝚊𝚝𝚜_𝚕𝚒𝚜𝚝 following the specification from week 2's
+ "BananaBanana -- Continued (Again)" problem. Use folds. *)
+fun repeats_list xs =
+  let
+      fun unfold f state =
+        case f state of
+            NONE => []
+          | SOME (state', x) => x :: unfold f state'
+      fun aux param =
+        case param of
+            (_::ss, 0::is) => aux (ss, is)
+          | (s::ss, i::is) => SOME ((s::ss, (i-1)::is), s)
+          | _ => NONE 
+  in
+      unfold aux xs
+  end

@@ -73,3 +73,13 @@ val test_zip_3 = zip ([1, 2, 3], []) = [];
 val test_zip_4 = zip ([], []) = [];
 val test_zip_5 = zip ([1, 2], [4, 6, 8]) = [(1, 4), (2, 6)];
 val test_zip_6 = zip ([1, 2, 3], [4, 6, 8]) = [(1, 4), (2, 6), (3, 8)];
+
+(* repeats_list tests *)
+val test_repeats_list_shortens_list_for_length_mismatch =
+    repeats_list (["a"], []) = [];
+val test_repeats_list_returns_empty_list_for_empty_lists =
+    repeats_list ([], []) = [];
+val test_repeats_list_repeats_according_to_second_parameter =
+    repeats_list (["a", "b", "c", "d", "e", "f", "g"], [1 ,2, 3, 4, 3, 2, 1]) =
+    ["a", "b", "b", "c", "c", "c", "d", "d", "d", "d", "e", "e", "e", "f", "f", "g"];
+
