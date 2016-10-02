@@ -43,5 +43,22 @@ fun do_until f p x =
  described above, but is defined in terms of 𝚍𝚘_𝚞𝚗𝚝𝚒𝚕. *)
 fun imp_factorial n = #1 (do_until (fn (acc, x) => (acc * x, x - 1)) (fn (_, x) => x = 0) (1, n))
 
-(* Write a function 𝚏𝚒𝚡𝚎𝚍_𝚙𝚘𝚒𝚗𝚝 that accepts some function 𝚏 and an initial value 𝚡, and keeps applying 𝚏 to 𝚡 until an 𝚡 is found such that 𝚏 𝚡 = 𝚡. Note that the function must have the same domain and codomain, and that the values must be comparable for equality. *)
+(* Write a function 𝚏𝚒𝚡𝚎𝚍_𝚙𝚘𝚒𝚗𝚝 that accepts some function 𝚏 and an initial value 𝚡,
+and keeps applying 𝚏 to 𝚡 until an 𝚡 is found such that 𝚏 𝚡 = 𝚡.
+Note that the function must have the same domain and codomain, and that the values must
+ be comparable for equality. *)
 fun fixed_point f = do_until f (fn x => f x = x)
+
+(* Square root of a real number n is a fixed point of function fn(x)=1/2(x+n/x).
+ Unfortunately, for reasons rooted in the arcane art of numerical analysis,
+ 𝚛𝚎𝚊𝚕s are not comparable for equality in Standard ML.
+ Write a function 𝚖𝚢_𝚜𝚚𝚛𝚝 that takes a real number and evaluates to an approximation of
+ its square root. You will probably need to write a version of 𝚏𝚒𝚡𝚎𝚍_𝚙𝚘𝚒𝚗𝚝 that uses
+ "difference in absolute value less than ϵ" as a test for equality.
+ Use ϵ=0.0001. Use the number itself as an initial guess. *)
+fun my_sqrt n =
+  let
+      fun fixed_point f = do_until f (fn x => abs (x - f x) < 0.0001)
+  in
+      fixed_point (fn x => 0.5 * (x + n / x)) n
+  end

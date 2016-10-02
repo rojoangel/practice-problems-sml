@@ -42,3 +42,9 @@ val test_imp_factorial_9 = imp_factorial 9 = 362880;
 (* fixed_point tests *)
 val test_fixed_point_0 = fixed_point (fn x => x div 2) 17 = 0;
 val test_fixed_point_1 = fixed_point (fn x => x) 17 = 17;
+
+(* my_sqrt tests *)
+val test_my_sqrt_1 = abs (my_sqrt 1.0 - Math.sqrt 1.0) < 0.01;
+val test_my_sqrt_2 = abs (my_sqrt 2.0 - Math.sqrt 2.0) < 0.01;
+val test_my_sqrt_7 = abs (my_sqrt 7.0 - Math.sqrt 7.0) < 0.01;
+val test_my_sqrt_99 = abs (my_sqrt 99.0 - Math.sqrt 99.0) < 0.01;
