@@ -38,3 +38,7 @@ val test_imp_factorial_0 = imp_factorial 0 = 1;
 val test_imp_factorial_1 = imp_factorial 1 = 1;
 val test_imp_factorial_2 = imp_factorial 2 = 2;
 val test_imp_factorial_9 = imp_factorial 9 = 362880;
+
+(* fixed_point tests *)
+val test_fixed_point_0 = fixed_point (fn x => x div 2) 17 = 0;
+val test_fixed_point_1 = fixed_point (fn x => x) 17 = 17;

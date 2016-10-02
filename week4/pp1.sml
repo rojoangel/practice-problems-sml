@@ -42,3 +42,6 @@ fun do_until f p x =
 (* Write a function 𝚒𝚖𝚙_𝚏𝚊𝚌𝚝𝚘𝚛𝚒𝚊𝚕 that has the same behavior as the 𝚏𝚊𝚌𝚝𝚘𝚛𝚒𝚊𝚕 function
  described above, but is defined in terms of 𝚍𝚘_𝚞𝚗𝚝𝚒𝚕. *)
 fun imp_factorial n = #1 (do_until (fn (acc, x) => (acc * x, x - 1)) (fn (_, x) => x = 0) (1, n))
+
+(* Write a function 𝚏𝚒𝚡𝚎𝚍_𝚙𝚘𝚒𝚗𝚝 that accepts some function 𝚏 and an initial value 𝚡, and keeps applying 𝚏 to 𝚡 until an 𝚡 is found such that 𝚏 𝚡 = 𝚡. Note that the function must have the same domain and codomain, and that the values must be comparable for equality. *)
+fun fixed_point f = do_until f (fn x => f x = x)
